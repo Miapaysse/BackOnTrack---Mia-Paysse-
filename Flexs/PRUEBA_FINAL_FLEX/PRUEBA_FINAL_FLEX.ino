@@ -1,8 +1,6 @@
 #define FLEX1 39
 #define FLEX2 36
 
-float impresion1 = 0;
-float impresion2 = 0;
 float tension = 0;
 float flex = 0;
 float angulo = 0;
@@ -19,12 +17,10 @@ void setup() {
 }
 
 void loop() {
-
-  flex = analogRead(FLEX2);
+  flex = analogRead(FLEX1);
   tension = obtenerTension(flex);
   obtenerAngulo(tension);
 }
-
 
 float obtenerTension(float flex) {
   float tension = 0;
@@ -36,7 +32,8 @@ float obtenerTension(float flex) {
 
 float obtenerAngulo(float tension) {
 
-  //((tension * (-90)) + 180);
+  // Función sacada de excel: ((tension * (-90)) + 180);
+  
   if (tension >= V_min && tension <= V_max) {
     // Cálculo del ángulo usando interpolación lineal
     angulo = (tension - V_min) / (V_max - V_min) * 180;
